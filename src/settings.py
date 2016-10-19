@@ -37,12 +37,18 @@ EMAIL_USE_TLS = True
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party app
+    'crispy_forms',
+    'registration',
+    # my apps
     'newsletter',
 ]
 
@@ -125,3 +131,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static_in_env", "static_root")
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static_in_pro", "our_static"),
+    #'/var/www/static/',
+]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "static_in_env", "media_root")
+
+# Crispy Forms Tags settings
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# Django Registration Redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"

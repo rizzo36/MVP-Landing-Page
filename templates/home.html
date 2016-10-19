@@ -1,8 +1,71 @@
-<h1>{{ title }}</h1>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-<form method="POST" action="">{% csrf_token %}
-{{ form.as_p }}
+{% block head_title %}
+Welcome | {{ block.super }}
+{% endblock %}
 
-<input type="submit" value="Sign Up">
+<style>
+{% block style %}
 
-</form>
+.navbar-static-top {
+	margin-bottom: 0px !important;
+}
+
+.jumbotron {
+	background-color: #0E3D14;
+	color: #FFF;
+}
+
+
+{% endblock %}
+</style>
+
+
+    {% block jumbotron %}
+<div class="jumbotron">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Tutorial Try Django 1.8</h1>
+				<p>MVP Landing Page project. Some sort of text could stand here. Bla bla bla bla </p>
+				<p>
+				  <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
+				</p>
+			</div>
+			<div class="col-sm-6" style="background-color:black; height:300px">
+			</div>
+		</div>
+    </div>
+</div>
+
+    {% endblock %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-3 pull-right">	
+		<p class="lead text-align-center">{{ title }}</p>
+
+		<form method="POST" action="">{% csrf_token %}
+		{{ form|crispy }}
+
+		<input class="btn btn-primary" type="submit" value="Sign Up">
+
+		</form>
+	</div>
+	<div class="col-sm-3">
+		<p class="lead text-align-center">Built with Django &amp; Bootstrap</p>	
+	</div>
+	<div class="col-sm-3">
+		<p class="lead text-align-center">Created for Starters of all kind.</p>	
+	</div>
+	<div class="col-sm-3">
+		<p class="lead text-align-center">Always Open Source</p>	
+	</div>
+
+
+
+
+</div>
+{% endblock %}
