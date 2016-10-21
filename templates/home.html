@@ -33,7 +33,8 @@ Welcome | {{ block.super }}
 				  <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
 				</p>
 			</div>
-			<div class="col-sm-6" style="background-color:black; height:300px">
+			<div class="col-sm-6" >
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/BH13psSYWIU" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
     </div>
@@ -43,6 +44,22 @@ Welcome | {{ block.super }}
 
 
 {% block content %}
+{% if  request.user.is_authenticated %}
+    <h1>You are logged in!</h1>
+
+    {% if queryset %}
+    <h2>Welcome Staff Member!</h2>
+    <table class="table">
+    	{% for instance in queryset %}
+    	<tr>
+    		<td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td>
+    	</tr>
+    	{% endfor %}
+    </table>
+    {% endif %}
+
+{% else %}
+
 <div class="row">
 	<div class="col-sm-3 pull-right">	
 		<p class="lead text-align-center">{{ title }}</p>
@@ -55,17 +72,27 @@ Welcome | {{ block.super }}
 		</form>
 	</div>
 	<div class="col-sm-3">
-		<p class="lead text-align-center">Built with Django &amp; Bootstrap</p>	
+		<p class="lead text-align-center">Built with Django &amp; Bootstrap
+		</br>
+		<span class="fa-stack fa-lg fa-5x">
+		  <i class="fa fa-square-o fa-stack-2x"></i>
+		  <i class="fa fa-github fa-stack-1x" aria-hidden="true"></i>
+		</span>
+		</p>	
 	</div>
 	<div class="col-sm-3">
-		<p class="lead text-align-center">Created for Starters of all kind.</p>	
+		<p class="lead text-align-center">Created for Starters of all kind.
+		</br>
+		<i class="fa fa-bolt fa-5x" aria-hidden="true" style="color: red"></i>
+		</p>
 	</div>
 	<div class="col-sm-3">
-		<p class="lead text-align-center">Always Open Source</p>	
+		<p class="lead text-align-center">Always Open Source
+		</br></br>
+		<i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
+		<span class="sr-only">Loading...</span>
+		</p>	
 	</div>
-
-
-
-
 </div>
+{% endif %}
 {% endblock %}
